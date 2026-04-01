@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --color-butter: #fffbeb;
+  --color-pink-soft: #fce7f3;
+  --color-mint-soft: #ccfbf1;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-butter);
+  min-height: 100dvh;
+}
+
+/* 스크롤바 숨기기 (카테고리 탭 등) */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* 토스트 애니메이션 */
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.toast-enter { animation: slideUp 0.25s ease forwards; }
+
+/* 장바구니 뱃지 pulse */
+@keyframes badgePop {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.3); }
+}
+.badge-pop { animation: badgePop 0.3s ease; }
