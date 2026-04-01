@@ -22,10 +22,19 @@ export default function Header() {
         <div className="flex items-center gap-1">
           <Link
             href="/estimate"
-            className="p-2 rounded-xl text-sm text-gray-500 hover:text-pink-500 hover:bg-pink-50 transition"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium text-gray-500 hover:text-pink-500 hover:bg-pink-50 transition"
             title="견적 계산기"
           >
-            🧮
+            <span>🧮</span>
+            <span className="hidden sm:inline">견적계산기</span>
+          </Link>
+          <Link
+            href="/custom-order"
+            className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-medium text-gray-500 hover:text-pink-500 hover:bg-pink-50 transition"
+            title="비규격 주문"
+          >
+            <span>📝</span>
+            <span className="hidden sm:inline">비규격주문</span>
           </Link>
           <Link
             href="/cart"

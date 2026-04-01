@@ -35,8 +35,9 @@ export default function CheckoutPage() {
   const [isLoading, setIsLoading] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const paymentWidgetRef = useRef<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const paymentMethodsRef = useRef<any>(null)
 
   // 토스페이먼츠 위젯 초기화
   useEffect(() => {
@@ -54,11 +55,12 @@ export default function CheckoutPage() {
         if (!mounted) return
         paymentWidgetRef.current = widget
 
-        await widget.renderPaymentMethods(
+        const paymentMethods = await widget.renderPaymentMethods(
           '#payment-method',
           { value: grandTotal },
           { variantKey: 'DEFAULT' }
         )
+        paymentMethodsRef.current = paymentMethods
         await widget.renderAgreement('#agreement', { variantKey: 'AGREEMENT' })
 
         setPaymentWidgetReady(true)
@@ -74,8 +76,8 @@ export default function CheckoutPage() {
 
   // 금액 변경 시 위젯 업데이트
   useEffect(() => {
-    if (!paymentWidgetRef.current || !paymentWidgetReady) return
-    paymentWidgetRef.current.updateAmount(grandTotal)
+    if (!paymentMethodsRef.current || !paymentWidgetReady) return
+    paymentMethodsRef.current.updateAmount(grandTotal)
   }, [grandTotal, paymentWidgetReady])
 
   if (items.length === 0) {
